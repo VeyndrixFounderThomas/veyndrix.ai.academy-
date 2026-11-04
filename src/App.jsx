@@ -1,4 +1,5 @@
-import React from "react";\nimport CourseView from "./CourseView";
+import React from "react";
+import CourseView from "./CourseView";
 import {ArrowRight, BrainCircuit, BriefcaseBusiness, CheckCircle2, Code2, GraduationCap, Menu, ShieldCheck, Sparkles} from "lucide-react";
 
 const courses = [
@@ -7,7 +8,9 @@ const courses = [
  {n:"03",tag:"COMING NEXT",title:"AI Web Development",desc:"Use AI to help plan, build, test, and improve useful websites and applications.",icon:Code2,skills:["Web fundamentals","AI-assisted development","Testing and iteration","Launch readiness"]}
 ];
 export default function App(){
- const [open,setOpen]=React.useState(false);\n const [showCourse,setShowCourse]=React.useState(false);\n if(showCourse) return <CourseView onBack={()=>setShowCourse(false)}/>;
+ const [open,setOpen]=React.useState(false);
+ const [showCourse,setShowCourse]=React.useState(false);
+ if(showCourse) return <CourseView onBack={()=>setShowCourse(false)}/>;
  return <div className="shell">
   <div className="topline"><span>BUILD SKILLS FOR WHAT'S NEXT</span><span>LEARN. BUILD. INNOVATE.</span></div>
   <header><a className="brand" href="#home"><span className="mark"><Sparkles/></span><span><b>Veyndrix</b><small>AI ACADEMY</small></span></a><button className="menu" onClick={()=>setOpen(!open)} aria-label="Toggle menu"><Menu/></button><nav className={open?"nav show":"nav"}><a href="#programs">Programs</a><a href="#approach">Our approach</a><a href="#about">About</a><a className="navcta" href="#programs">Explore courses <ArrowRight size={15}/></a></nav></header>
