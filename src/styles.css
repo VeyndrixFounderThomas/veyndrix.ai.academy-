@@ -58,3 +58,18 @@
 .pathway-grid p{font-size:11px;line-height:1.8;color:#758198;margin:0}
 .pathway-note{font-size:10px;line-height:1.7;color:#8b96a7;margin-top:20px;max-width:900px}
 @media(max-width:650px){.pathways{padding:62px 6%}.pathways .section-head h2{font-size:40px}.pathway-grid{grid-template-columns:1fr}.pathway-grid article{min-height:0}}
+
+/* Module overview and lesson navigation */
+.module-learning-card{border:1px solid #dce7f6;background:#f6f9ff;border-radius:8px;padding:20px 22px;margin:24px 0}
+.module-learning-card p{font-size:13px;line-height:1.8;color:#596a83;margin:12px 0 0}
+.module-lessons-heading{font:700 18px Manrope;color:#20365c;margin:28px 0 13px}
+.module-lesson-list{display:grid;gap:10px}
+.module-lesson-card{width:100%;display:flex;align-items:center;gap:15px;text-align:left;background:#fff;border:1px solid #e0e7f1;border-radius:7px;padding:16px;cursor:pointer;color:#315b9e}
+.module-lesson-card:hover{border-color:#7da4e5;background:#fbfdff}
+.module-lesson-number{font:700 12px Manrope;color:#6486bc}
+.module-lesson-details{display:grid;gap:5px;flex:1}
+.module-lesson-details b{font:700 13px Manrope;color:#253b5e}
+.module-lesson-details small{font-size:10px;color:#8290a5}
+.module-start{margin-top:20px}
+.lesson-copy h3{font:700 16px Manrope;color:#243a5d;margin:22px 0 8px}
+.lesson-copy p{line-height:1.9}
