@@ -60,6 +60,6 @@ export default function CourseView({ onBack }) {
         <p className="preview-note"><LockKeyhole size={14}/> Preview mode: progress is temporary and is not saved to a student account yet. Enrollment, assessments, and certificates are not active.</p>
       </main>
     </div>
-    <footer className="learning-footer"><span>VEYND RIX AI ACADEMY</span><span>LEARN. BUILD. INNOVATE.</span></footer>
+    <footer className="learning-footer"><span>VEYNDRIX AI ACADEMY</span><span>LEARN. BUILD. INNOVATE.</span></footer>
   </div>;
 }
