@@ -45,3 +45,16 @@
 .outcomes-panel li{display:flex;align-items:flex-start;gap:8px;color:#e0eafa;font-size:10px;line-height:1.5}
 .outcomes-panel li svg{flex:0 0 auto;color:#a9c8ff;margin-top:1px}
 @media(max-width:560px){.outcomes-panel{padding:15px}.outcomes-panel ul{grid-template-columns:1fr;gap:8px}}
+
+/* Graduate pathways */
+.pathways{padding:92px 9%;background:#fff}
+.pathways .section-head{margin:12px 0 32px}
+.pathways .section-head h2{font-size:46px}
+.pathway-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.pathway-grid article{border:1px solid #e3eaf4;border-radius:8px;padding:25px;min-height:260px}
+.pathway-icon{width:44px;height:44px;border-radius:8px;background:#edf3ff;color:#2e64c2;display:grid;place-items:center;margin-bottom:20px}
+.pathway-grid article>span{font-size:8px;letter-spacing:1.2px;color:#6681ac;font-weight:700}
+.pathway-grid h3{font:700 17px Manrope;color:#1b3157;margin:12px 0 9px}
+.pathway-grid p{font-size:11px;line-height:1.8;color:#758198;margin:0}
+.pathway-note{font-size:10px;line-height:1.7;color:#8b96a7;margin-top:20px;max-width:900px}
+@media(max-width:650px){.pathways{padding:62px 6%}.pathways .section-head h2{font-size:40px}.pathway-grid{grid-template-columns:1fr}.pathway-grid article{min-height:0}}
