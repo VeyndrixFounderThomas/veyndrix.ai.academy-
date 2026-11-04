@@ -104,3 +104,7 @@
 .module-catalog-action{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:auto;padding-top:12px;border-top:1px solid #edf1f6;color:#2d5eaf;font-size:11px;font-weight:700}
 .back-to-modules{display:flex;align-items:center;gap:7px;border:0;background:none;padding:0 0 18px;color:#55729f;font-size:11px;font-weight:700;cursor:pointer}
 @media(max-width:560px){.module-catalog-grid{grid-template-columns:1fr}.module-catalog-card{min-height:155px}}
+
+/* Course capstone brief */
+.capstone-card{border:1px solid #d7e4f6;border-left:3px solid #3972d4;border-radius:7px;padding:19px 21px;margin:20px 0;background:#f7faff}
+.capstone-card p{font-size:12px;line-height:1.85;color:#566780;margin:11px 0 0}
