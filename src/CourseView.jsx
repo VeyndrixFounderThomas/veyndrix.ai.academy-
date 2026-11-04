@@ -29,9 +29,10 @@ export default function CourseView({ onBack }) {
   }, [completed]);
   const key = (m, l) => m + "-" + l;
   const isDone = lessonIndex >= 0 && completed.includes(key(moduleIndex, lessonIndex));
-  const selectLesson = (m, l) => { setModuleIndex(m); setLessonIndex(l); };\n  const selectModule = (m) => { setModuleIndex(m); setLessonIndex(-1); };
+  const selectLesson = (m, l) => { setModuleIndex(m); setLessonIndex(l); };
+  const selectModule = (m) => { setModuleIndex(m); setLessonIndex(-1); };
   const move = (direction) => {
-    let m = moduleIndex, l = lessonIndex < 0 ? (direction > 0 ? 0 : -1) : lessonIndex + direction;\n    if (l < 0 && direction < 0) { if (m === 0) return; m -= 1; l = course.modules[m].lessons.length - 1; }
+    let m = moduleIndex, l = lessonIndex < 0 ? (direction > 0 ? 0 : -1) : lessonIndex + direction;
     if (l < 0) { if (m === 0) return; m -= 1; l = course.modules[m].lessons.length - 1; }
     if (l >= course.modules[m].lessons.length) { if (m === course.modules.length - 1) return; m += 1; l = 0; }
     selectLesson(m, l);
