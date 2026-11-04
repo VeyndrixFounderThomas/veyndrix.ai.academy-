@@ -32,6 +32,10 @@ export default function CourseView({ onBack }) {
       <h1>{course.title}</h1>
       <p>{course.subtitle}</p>
       <div className="course-meta"><span><BookOpen size={15}/>{course.format}</span><span><GraduationCap size={15}/>{course.level}</span></div>
+      <section className="outcomes-panel" aria-label="Course learning outcomes">
+        <h2>What you'll be able to do</h2>
+        <ul>{course.outcomes.map((outcome) => <li key={outcome}><CheckCircle2 size={15}/>{outcome}</li>)}</ul>
+      </section>
     </div>
     <div className="learning-layout">
       <aside className={showOutline ? "lesson-sidebar open" : "lesson-sidebar"}>
