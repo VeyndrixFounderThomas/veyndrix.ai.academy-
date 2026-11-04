@@ -5,12 +5,28 @@ import { course } from "./course";
 export default function CourseView({ onBack }) {
   const [moduleIndex, setModuleIndex] = React.useState(0);
   const [lessonIndex, setLessonIndex] = React.useState(0);
-  const [completed, setCompleted] = React.useState([]);
+  // Preview progress is saved only in this browser. Account sync will replace this
+  // temporary storage once the academy's dedicated Supabase project is connected.
+  const [completed, setCompleted] = React.useState(() => {
+    try {
+      const saved = JSON.parse(window.localStorage.getItem("veyndrix-academy-preview-progress") || "[]");
+      return Array.isArray(saved) ? saved.filter(item => typeof item === "string") : [];
+    } catch {
+      return [];
+    }
+  });
   const [showOutline, setShowOutline] = React.useState(true);
   const currentModule = course.modules[moduleIndex];
   const currentLesson = currentModule.lessons[lessonIndex];
   const total = course.modules.reduce((sum, module) => sum + module.lessons.length, 0);
   const done = completed.length;
+  React.useEffect(() => {
+    try {
+      window.localStorage.setItem("veyndrix-academy-preview-progress", JSON.stringify(completed));
+    } catch {
+      // The course remains usable if browser storage is unavailable.
+    }
+  }, [completed]);
   const key = (m, l) => m + "-" + l;
   const isDone = completed.includes(key(moduleIndex, lessonIndex));
   const selectLesson = (m, l) => { setModuleIndex(m); setLessonIndex(l); };
@@ -61,7 +77,7 @@ export default function CourseView({ onBack }) {
           <button className={isDone?"complete-action done":"complete-action"} onClick={toggleDone}>{isDone?<CheckCircle2 size={16}/>:<Circle size={16}/>} {isDone?"Completed":"Mark complete"}</button>
           <button className="primary-action" onClick={() => move(1)} disabled={moduleIndex===course.modules.length-1&&lessonIndex===currentModule.lessons.length-1}>Next lesson <ArrowRight size={16}/></button>
         </div>
-        <p className="preview-note"><LockKeyhole size={14}/> Preview mode: progress is temporary and is not saved to a student account yet. Enrollment, assessments, and certificates are not active.</p>
+        <p className="preview-note"><LockKeyhole size={14}/> Preview mode: completed lessons are saved in this browser on this device. They are not connected to a student account and will not sync across devices. Enrollment, assessments, and certificates are not active.</p>
       </main>
     </div>
     <footer className="learning-footer"><span>VEYNDRIX AI ACADEMY</span><span>LEARN. BUILD. INNOVATE.</span></footer>
