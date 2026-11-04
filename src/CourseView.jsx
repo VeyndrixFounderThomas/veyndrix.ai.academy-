@@ -2,6 +2,18 @@ import React from "react";
 import { ArrowLeft, ArrowRight, BookOpen, CheckCircle2, ChevronDown, ChevronRight, Circle, Clock3, GraduationCap, LockKeyhole } from "lucide-react";
 import { course } from "./course";
 
+function KnowledgeCheck({ check }) {
+  const [choice, setChoice] = React.useState(null);
+  const [submitted, setSubmitted] = React.useState(false);
+  return <section className="knowledge-check">
+    <div className="exercise-label"><CheckCircle2 size={16}/> KNOWLEDGE CHECK</div>
+    <h3>{check.question}</h3>
+    <div className="quiz-options">{check.options.map((option,index)=><button key={option} className={"quiz-option "+(choice===index?"selected":"")+" "+(submitted&&index===check.answer?"correct":"")+" "+(submitted&&choice===index&&choice!==check.answer?"incorrect":"")} onClick={()=>{setChoice(index);setSubmitted(false);}}>{String.fromCharCode(65+index)}. {option}</button>)}</div>
+    <button className="quiz-submit" disabled={choice===null} onClick={()=>setSubmitted(true)}>Check answer</button>
+    {submitted&&<p className="quiz-feedback">{choice===check.answer?"Correct. ":"Not quite. "}{check.explanation}</p>}
+  </section>;
+}
+
 export default function CourseView({ onBack }) {
   const [moduleIndex, setModuleIndex] = React.useState(0);
   const [lessonIndex, setLessonIndex] = React.useState(-1);
@@ -80,7 +92,10 @@ export default function CourseView({ onBack }) {
           <h2>{currentLesson.title}</h2>
           <div className="lesson-time"><Clock3 size={15}/>{currentLesson.time} estimated</div>
           <p className="module-intro">{currentModule.intro}</p>
-          <div className="lesson-copy"><h3>Lesson</h3><p>{currentLesson.body}</p><h3>Why this matters</h3><p>Apply this concept to a real business problem. Start with verified information, write down assumptions, and decide how you will check whether the result is useful. AI can help you draft and explore options, but you remain responsible for reviewing the work before using it with customers.</p></div>
+          <div className="lesson-copy">{currentLesson.sections ? currentLesson.sections.map((section,index)=><section className="lesson-section" key={section.heading}><h3>{section.heading}</h3><p>{section.body}</p></section>) : <><h3>Lesson</h3><p>{currentLesson.body}</p><h3>Why this matters</h3><p>Apply this concept to a real business problem. Start with verified information, write down assumptions, and decide how you will check whether the result is useful. AI can help you draft and explore options, but you remain responsible for reviewing the work before using it with customers.</p></>}</div>
+          {currentLesson.keyTakeaways&&<section className="takeaways-card"><div className="exercise-label"><CheckCircle2 size={16}/> KEY TAKEAWAYS</div><ul>{currentLesson.keyTakeaways.map(item=><li key={item}>{item}</li>)}</ul></section>}
+          {currentLesson.glossary&&<section className="glossary-card"><div className="exercise-label"><BookOpen size={16}/> KEY TERMS</div>{currentLesson.glossary.map(item=><p key={item.term}><b>{item.term}:</b> {item.definition}</p>)}</section>}
+          {currentLesson.knowledgeCheck&&<KnowledgeCheck key={moduleIndex+"-"+lessonIndex} check={currentLesson.knowledgeCheck}/ >}
           <section className="exercise-card"><div className="exercise-label"><BookOpen size={16}/> YOUR PRACTICE</div><h3>Put it into action</h3><p>{currentLesson.task}</p></section>
           <div className="lesson-actions">
             <button className="secondary-action" onClick={() => lessonIndex===0 ? selectModule(moduleIndex) : move(-1)}><ArrowLeft size={16}/> {lessonIndex===0?"Module overview":"Previous"}</button>
