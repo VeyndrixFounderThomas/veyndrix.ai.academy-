@@ -92,3 +92,15 @@
 .quiz-submit{margin-top:14px;border:0;border-radius:5px;padding:10px 15px;background:#285ca8;color:white;font-size:12px;font-weight:700;cursor:pointer}
 .quiz-submit:disabled{opacity:.45;cursor:not-allowed}
 .quiz-feedback{font-size:12px;line-height:1.7;color:#455873;margin:13px 0 0}
+
+/* Clickable module catalog */
+.module-catalog h2{font:800 clamp(28px,3vw,39px)/1.2 Manrope;letter-spacing:-1.1px;margin:15px 0 10px;color:#18335f}
+.module-catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:25px}
+.module-catalog-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:190px;padding:20px;text-align:left;background:#fff;border:1px solid #dfe7f2;border-radius:8px;cursor:pointer;color:#243b62;transition:border-color .15s,transform .15s}
+.module-catalog-card:hover{border-color:#7da4e5;transform:translateY(-2px)}
+.module-catalog-number{font-size:9px;letter-spacing:1.2px;color:#6681ac;font-weight:700}
+.module-catalog-card>b{font:700 16px Manrope;color:#20385f}
+.module-catalog-card>small{font-size:11px;line-height:1.7;color:#748198}
+.module-catalog-action{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:auto;padding-top:12px;border-top:1px solid #edf1f6;color:#2d5eaf;font-size:11px;font-weight:700}
+.back-to-modules{display:flex;align-items:center;gap:7px;border:0;background:none;padding:0 0 18px;color:#55729f;font-size:11px;font-weight:700;cursor:pointer}
+@media(max-width:560px){.module-catalog-grid{grid-template-columns:1fr}.module-catalog-card{min-height:155px}}
