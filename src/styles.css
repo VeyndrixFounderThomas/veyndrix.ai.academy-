@@ -108,3 +108,6 @@
 /* Course capstone brief */
 .capstone-card{border:1px solid #d7e4f6;border-left:3px solid #3972d4;border-radius:7px;padding:19px 21px;margin:20px 0;background:#f7faff}
 .capstone-card p{font-size:12px;line-height:1.85;color:#566780;margin:11px 0 0}
+
+/* Balanced two-by-two program grid on desktop */
+@media(min-width:851px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
