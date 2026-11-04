@@ -16,6 +16,7 @@ function KnowledgeCheck({ check }) {
 
 export default function CourseView({ onBack }) {
   const [moduleIndex, setModuleIndex] = React.useState(0);
+  const [showCatalog, setShowCatalog] = React.useState(true);
   const [lessonIndex, setLessonIndex] = React.useState(-1);
   // Preview progress is saved only in this browser. Account sync will replace this
   // temporary storage once the academy's dedicated Supabase project is connected.
@@ -41,8 +42,8 @@ export default function CourseView({ onBack }) {
   }, [completed]);
   const key = (m, l) => m + "-" + l;
   const isDone = lessonIndex >= 0 && completed.includes(key(moduleIndex, lessonIndex));
-  const selectLesson = (m, l) => { setModuleIndex(m); setLessonIndex(l); };
-  const selectModule = (m) => { setModuleIndex(m); setLessonIndex(-1); };
+  const selectLesson = (m, l) => { setModuleIndex(m); setLessonIndex(l); setShowCatalog(false); };
+  const selectModule = (m) => { setModuleIndex(m); setLessonIndex(-1); setShowCatalog(false); };
   const move = (direction) => {
     let m = moduleIndex, l = lessonIndex < 0 ? (direction > 0 ? 0 : -1) : lessonIndex + direction;
     if (l < 0) { if (m === 0) return; m -= 1; l = course.modules[m].lessons.length - 1; }
@@ -79,7 +80,13 @@ export default function CourseView({ onBack }) {
       </aside>
       <main className="lesson-main">
         <button className="outline-toggle" onClick={() => setShowOutline(!showOutline)}><BookOpen size={15}/>{showOutline?"Hide course outline":"Show course outline"}<ChevronDown size={15}/></button>
-        {lessonIndex < 0 ? <div className="module-overview">
+        {showCatalog ? <div className="module-catalog">
+          <div className="lesson-kicker">YOUR LEARNING PATH <span>/</span> COURSE MODULES</div>
+          <h2>Choose a module to begin</h2>
+          <p className="module-intro">Start with the foundations. Each module opens into its own learning space with complete lessons, practical activities, and knowledge checks.</p>
+          <div className="module-catalog-grid">{course.modules.map((module,m)=><button className="module-catalog-card" key={module.title} onClick={()=>selectModule(m)}><span className="module-catalog-number">MODULE {String(m+1).padStart(2,"0")}</span><b>{module.title}</b><small>{module.lessons.length} lessons · {module.intro}</small><span className="module-catalog-action">{m===0?"Open Module 1":"Open module"} <ArrowRight size={16}/></span></button>)}</div>
+        </div> : lessonIndex < 0 ? <div className="module-overview">
+          <button className="back-to-modules" onClick={()=>setShowCatalog(true)}><ArrowLeft size={15}/> All course modules</button>
           <div className="lesson-kicker">MODULE {String(moduleIndex+1).padStart(2,"0")} <span>/</span> MODULE OVERVIEW</div>
           <h2>{currentModule.title}</h2>
           <p className="module-intro">{currentModule.intro}</p>
@@ -109,3 +116,15 @@ export default function CourseView({ onBack }) {
     <footer className="learning-footer"><span>VEYNDRIX AI ACADEMY</span><span>LEARN. BUILD. INNOVATE.</span></footer>
   </div>;
 }
+
+/* Clickable module catalog */
+.module-catalog h2{font:800 clamp(28px,3vw,39px)/1.2 Manrope;letter-spacing:-1.1px;margin:15px 0 10px;color:#18335f}
+.module-catalog-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:25px}
+.module-catalog-card{display:flex;flex-direction:column;align-items:flex-start;gap:10px;min-height:190px;padding:20px;text-align:left;background:#fff;border:1px solid #dfe7f2;border-radius:8px;cursor:pointer;color:#243b62;transition:border-color .15s,transform .15s}
+.module-catalog-card:hover{border-color:#7da4e5;transform:translateY(-2px)}
+.module-catalog-number{font-size:9px;letter-spacing:1.2px;color:#6681ac;font-weight:700}
+.module-catalog-card>b{font:700 16px Manrope;color:#20385f}
+.module-catalog-card>small{font-size:11px;line-height:1.7;color:#748198}
+.module-catalog-action{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;margin-top:auto;padding-top:12px;border-top:1px solid #edf1f6;color:#2d5eaf;font-size:11px;font-weight:700}
+.back-to-modules{display:flex;align-items:center;gap:7px;border:0;background:none;padding:0 0 18px;color:#55729f;font-size:11px;font-weight:700;cursor:pointer}
+@media(max-width:560px){.module-catalog-grid{grid-template-columns:1fr}.module-catalog-card{min-height:155px}}
