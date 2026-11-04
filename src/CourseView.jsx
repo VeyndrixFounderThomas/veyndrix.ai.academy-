@@ -92,6 +92,7 @@ export default function CourseView({ onBack, courseData = course }) {
           <h2>{currentModule.title}</h2>
           <p className="module-intro">{currentModule.intro}</p>
           <section className="module-learning-card"><div className="exercise-label"><GraduationCap size={16}/> WHAT YOU'LL LEARN</div><p>Work through the lessons below in order. Each lesson introduces a practical concept, explains how to apply it in a small-business setting, and gives you an activity to complete. Keep your work—you'll use it in your final business portfolio.</p></section>
+          {activeCourse.capstone && moduleIndex === activeCourse.modules.length - 1 && <section className="capstone-card"><div className="exercise-label"><GraduationCap size={16}/> FINAL PORTFOLIO PROJECT</div><p>{activeCourse.capstone}</p></section>}
           <h3 className="module-lessons-heading">Lessons in this module</h3>
           <div className="module-lesson-list">{currentModule.lessons.map((lesson,l)=><button className="module-lesson-card" key={lesson.title} onClick={()=>selectLesson(moduleIndex,l)}><span className="module-lesson-number">{String(l+1).padStart(2,"0")}</span><span className="module-lesson-details"><b>{lesson.title}</b><small>{lesson.time} · Learning material and practical activity</small></span>{completed.includes(key(moduleIndex,l))?<CheckCircle2 size={18}/>:<ArrowRight size={18}/>}</button>)}</div>
           <button className="primary-action module-start" onClick={()=>selectLesson(moduleIndex,0)}>Start first lesson <ArrowRight size={16}/></button>
