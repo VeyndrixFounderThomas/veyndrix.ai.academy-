@@ -37,3 +37,11 @@
 .learning-footer{border-top:1px solid #e5ebf4;background:white;padding:22px 6%;display:flex;justify-content:space-between;color:#8393ad;font-size:9px;letter-spacing:1.4px;font-weight:700}
 @media(max-width:800px){.learning-layout{grid-template-columns:1fr}.lesson-sidebar{position:static;max-height:none;display:none}.lesson-sidebar.open{display:block}.outline-toggle{display:flex}.lesson-main{padding:27px 6%}}
 @media(max-width:560px){.learning-header{padding:0 4%;height:66px}.learning-header .brand{transform:scale(.85)}.preview-label{font-size:8px}.back-link{font-size:10px}.course-banner{padding:36px 7%}.course-meta{flex-wrap:wrap;gap:12px}.learning-layout{padding:20px 4%;gap:16px}.lesson-main{padding:25px 5%}.lesson-actions{flex-wrap:wrap}.lesson-actions button{justify-content:center}.learning-footer{padding:18px 5%;font-size:8px}}
+
+
+.outcomes-panel{margin-top:26px;max-width:900px;padding:17px 19px;background:#ffffff12;border:1px solid #ffffff2b;border-radius:7px}
+.outcomes-panel h2{font:700 12px "DM Sans";letter-spacing:.5px;color:#fff;margin:0 0 12px}
+.outcomes-panel ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 22px;list-style:none;padding:0;margin:0}
+.outcomes-panel li{display:flex;align-items:flex-start;gap:8px;color:#e0eafa;font-size:10px;line-height:1.5}
+.outcomes-panel li svg{flex:0 0 auto;color:#a9c8ff;margin-top:1px}
+@media(max-width:560px){.outcomes-panel{padding:15px}.outcomes-panel ul{grid-template-columns:1fr;gap:8px}}
